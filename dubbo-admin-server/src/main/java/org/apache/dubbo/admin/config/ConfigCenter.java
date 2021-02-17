@@ -99,7 +99,11 @@ public class ConfigCenter {
             dynamicConfiguration = ExtensionLoader.getExtensionLoader(GovernanceConfiguration.class).getExtension(configCenterUrl.getProtocol());
             dynamicConfiguration.setUrl(configCenterUrl);
             dynamicConfiguration.init();
-            String config = dynamicConfiguration.getConfig(Constants.GLOBAL_CONFIG_PATH);
+            String path = Constants.GLOBAL_CONFIG_PATH;
+//            if (configCenter.startsWith("nacos")) {
+//                path = Constants.NACOS_GLOBAL_CONFIG_PATH;
+//            }
+            String config = dynamicConfiguration.getConfig(path);
 
             if (StringUtils.isNotEmpty(config)) {
                 Arrays.stream(config.split("\n")).forEach( s -> {

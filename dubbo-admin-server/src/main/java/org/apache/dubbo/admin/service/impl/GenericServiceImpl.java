@@ -23,9 +23,12 @@ import org.apache.dubbo.config.ReferenceConfig;
 import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.registry.Registry;
 import org.apache.dubbo.rpc.service.GenericService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class GenericServiceImpl {
@@ -39,8 +42,13 @@ public class GenericServiceImpl {
     @PostConstruct
     public void init() {
         RegistryConfig registryConfig = new RegistryConfig();
+//        registryConfig.setAddress(registry.getUrl().getProtocol() + "://" + registry.getUrl().getAddress());
+//        registryConfig.setGroup(registry.getUrl().getParameter("group"));
         registryConfig.setAddress(registry.getUrl().getProtocol() + "://" + registry.getUrl().getAddress());
-        registryConfig.setGroup(registry.getUrl().getParameter("group"));
+        Map<String, String> params = new HashMap<>();
+        params.put("namespace", registry.getUrl().getParameter("namespace"));
+        params.put("group", registry.getUrl().getParameter("group"));
+        registryConfig.setParameters(params);
 
         applicationConfig = new ApplicationConfig();
         applicationConfig.setName("dubbo-admin");

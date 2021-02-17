@@ -75,6 +75,7 @@ public class Constants {
     public static final String SPECIFICATION_VERSION_KEY = "release";
     public static final String GLOBAL_CONFIG = "global";
     public static final String GLOBAL_CONFIG_PATH = "config/dubbo/dubbo.properties";
+    public static final String NACOS_GLOBAL_CONFIG_PATH = "dubbo-admin.properties";
     public static final String METRICS_PORT = "metrics.port";
     public static final String METRICS_PROTOCOL = "metrics.protocol";
     public static final Set<String> CONFIGS = new HashSet<>();

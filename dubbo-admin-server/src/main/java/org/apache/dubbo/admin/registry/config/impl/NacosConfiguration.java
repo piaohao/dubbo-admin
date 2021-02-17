@@ -75,6 +75,7 @@ public class NacosConfiguration implements GovernanceConfiguration {
                 ;
         properties.put(SERVER_ADDR, serverAddr);
         properties.put(NAMESPACE, nameSpace);
+        properties.put("group", group);
     }
 
 
